@@ -1,7 +1,8 @@
 "use client";
 import NextImage from 'next/image'
+import { useRouter } from 'next/navigation';
 import React, { useState,useEffect } from 'react';
-import ReactDOM from 'react-dom';
+ 
 
 interface Product {
     id: number;
@@ -21,7 +22,7 @@ interface ProductImage {
     image_id: number;
     sort_order: string;
     image: Image
-
+    
 }
 
 interface Image {
@@ -40,7 +41,7 @@ type ResponseProduct = Product & {product_images: ProductImage[], product_invent
 
 
 interface ResponseData {
-   products: ResponseProduct[]
+    products: ResponseProduct[]
 }
 
 const SouldOut = (stockNumber: number) => {
@@ -52,8 +53,11 @@ const SouldOut = (stockNumber: number) => {
         </div>
     );
 }
+
 export default function Product() {
     
+        // const Nav = () => {
+        const router = useRouter();
         const [products, setProduct] = useState<ResponseProduct[]>([]);
 
         useEffect(() => {
@@ -71,12 +75,11 @@ export default function Product() {
         },[])
         console.log(products)
 
-
         return (
             <div>
                 <ul>
                     {
-                        products.map((ResponseProduct) => 
+                        products?.map((ResponseProduct) => 
                         
                         ResponseProduct.product_images.map((productImage, index) => (
                             <div key={index}>
@@ -88,7 +91,9 @@ export default function Product() {
                     }
                 </ul>
 
+                <button className="w-100 btn btn-lg btn-primary" onClick={() => router.push("/login")}>ログイン</button>
             </div>
+            
         )
-          
+        // } 
 }
