@@ -1,6 +1,6 @@
 "use client";
 import NextImage from 'next/image'
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useState,useEffect } from 'react';
  
 
@@ -59,9 +59,18 @@ export default function Product() {
         // const Nav = () => {
         const router = useRouter();
         const [products, setProduct] = useState<ResponseProduct[]>([]);
+        const searchParams = useSearchParams();
+        const search = searchParams.get('genre_id');
+        let productUrl = 'http://localhost:8080/api/product';
+        
+        console.log(search)
 
         useEffect(() => {
-            fetch('http://localhost:8080/api/product', {
+            if(search != null) {
+                productUrl =`${productUrl}?genreId=${search}`
+            }
+
+            fetch(productUrl, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -73,7 +82,6 @@ export default function Product() {
                 setProduct(data.products)
             })
         },[])
-        console.log(products)
 
         return (
             <div>
