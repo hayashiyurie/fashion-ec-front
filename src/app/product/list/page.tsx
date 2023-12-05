@@ -93,7 +93,7 @@ export default function Product() {
                             <div key={index}>
                                 <NextImage alt={"jj"} height={500} width={500} src={productImage.image.path_url}></NextImage>
                                 {SouldOut(ResponseProduct.product_inventory_management?.number_of_stock)}
-                             </div>
+                            </div>
                         ))
                         )
                     }

@@ -6,10 +6,6 @@ import { GenreList } from "../product/genre/GenreList";
 
 
 export default function Top() {
-    const [email, seteEail] = useState<string>('');
-    const [password, setPeassword] = useState<string>('');
-    const [cookies, setCookie, removeCookie] = useCookies(["XSRF-TOKEN"]);
-
     const router = useRouter();
         return (
             <div>
