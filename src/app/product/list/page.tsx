@@ -2,43 +2,9 @@
 import NextImage from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useState,useEffect } from 'react';
- 
-
-interface Product {
-    id: number;
-    size_id: number;
-    color_id: number;
-    genre_id: number;
-    product_name:string;
-    explanation:string;
-    tax_included_price: number;
-    jan_code: string;
-    sku_code: string;
-}
-
-interface ProductImage {
-    id: number;
-    product_id: number;
-    image_id: number;
-    sort_order: string;
-    image: Image
-    
-}
-
-interface Image {
-    id: number;
-    path: string;
-    path_url: string
-}
-
-interface ProductInventoryManagement {
-    id: number;
-    product_id: string;
-    number_of_stock: number
-}
+import { Product, ProductImage, ProductInventoryManagement } from '@/types/product';
 
 type ResponseProduct = Product & {product_images: ProductImage[], product_inventory_management: ProductInventoryManagement}
-
 
 interface ResponseData {
     products: ResponseProduct[]
@@ -87,18 +53,24 @@ export default function Product() {
             <div>
                 <ul>
                     {
-                        products?.map((ResponseProduct) => 
-                        
-                        ResponseProduct.product_images.map((productImage, index) => (
-                            <div key={index}>
-                                <NextImage alt={"jj"} height={500} width={500} src={productImage.image.path_url}></NextImage>
-                                {SouldOut(ResponseProduct.product_inventory_management?.number_of_stock)}
-                            </div>
-                        ))
-                        )
+                         
+                        products?.map((ResponseProduct, i) => {
+                            return (
+                                <div key={i} onClick={() => router.push(`/product/${ResponseProduct.id}`)}>
+                                {ResponseProduct.product_images.map((productImage, index) => (
+
+                                    <div key={index}>
+                                        <NextImage alt={"jj"} height={500} width={500} src={productImage.image.path_url}></NextImage>
+                                        {SouldOut(ResponseProduct.product_inventory_management?.number_of_stock)}
+                                    </div>
+                                ))}
+
+                                </div>
+                            )
+
+                        })            
                     }
                 </ul>
-
                 <button className="w-100 btn btn-lg btn-primary" onClick={() => router.push("/login")}>ログイン</button>
             </div>
             
