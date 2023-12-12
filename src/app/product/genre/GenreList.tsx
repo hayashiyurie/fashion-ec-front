@@ -3,12 +3,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
-
-interface Genre {
-    id: number;
-    genre_name: string;
-}
+import { Genre } from "@/types/product";
 
 interface ResponseData {
     genres: Genre[];
