@@ -42,12 +42,13 @@ const save = async ()  => {
         const res = await fetch('http://localhost:8080/login', {
             method: 'POST',
             body : JSON.stringify({email: email, password: password,}),
-            credentials: 'include',
             headers: {
                 'Accept': 'application/json',
                 "Content-Type": "application/json",
                 "X-XSRF-TOKEN": cookies["XSRF-TOKEN"]
-            },})
+            },
+            credentials: 'include',
+        })
             const data = await res.json()
             if (res.status === 404) {
                 alert(data.message)
