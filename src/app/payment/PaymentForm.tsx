@@ -1,11 +1,11 @@
 'use client'
-import React, { useState, SyntheticEvent } from 'react';
+import React, { useMemo, useContext ,useState, SyntheticEvent } from 'react';
 import { PaymentMethod, PaymentMethodResult } from '@stripe/stripe-js';
 import { CardElement, useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement, } from '@stripe/react-stripe-js';
 import { PaymentProvider } from '../provider/PaymentProvider';
 import { DeliveryDestinationList } from '../ui/deliveryDestination/DeliveryDestinationList';
 import { useCookies } from "react-cookie";
-
+import { CartContext } from "../provider/CartProvider"
 interface Order {
   id: number;
   postage: number;
@@ -48,17 +48,20 @@ const CheckoutForm = () => {
       }
     };
     
-    const [postage, setPostage] = useState<number>();
-    const [billingAmount, setBillingAmount] = useState<number>();
-    const [methodOfPayment, setMethodOfPayment] = useState<string>('');
-    const [destinationsName, setDestinationsName] = useState<string>('');
-    const [destinationsPostcode, setDestinationsPostcode] = useState<string>('');
-    const [destinationsAddress, setdDstinationsAddress] = useState<string>('');
-    const [orderStatus, setOrderStatus] = useState<string>('');
-    const [paymentMethod.id, setPaymentMethod.id] = useState<string>('');
-    const [amount, setAmount] = useState<string>('');
 
     const [cookies, setCookie, removeCookie] = useCookies(["XSRF-TOKEN"]);
+
+    const [selectedAddress, setAddress] = useState<number | null>(null)
+  const Action = ({id}: {id: number}) => (
+    <button className="w-100 btn btn-lg btn-primary" onClick={() => setAddress(id)}>
+            配送先として選択
+        </button>
+  )
+
+  const {cart, dispatch} = useContext(CartContext)
+
+  const buyPrice = useMemo(() => cart.reduce((sum, productInCart) => (productInCart.sum_price), 0), [cart])
+
     
   const handlePayment = async (paymentMethod: PaymentMethod) => {
     try {
@@ -77,15 +80,11 @@ const CheckoutForm = () => {
       const res = await fetch('http://localhost:8080/api/order', {
           method: 'POST',
           body : JSON.stringify({
-            postage :postage,
-            billing_amount: billingAmount,
-            method_of_payment:methodOfPayment,
-            destinations_name: destinationsName,
-            destinations_postcode: destinationsPostcode,
-            destinations_address: destinationsAddress,
-            order_status: orderStatus,
-            amount: amount,
-            payment_method_id: paymentMethod.id
+            delivery_destination_id: selectedAddress,
+            amount: buyPrice,
+            payment_method_id: paymentMethod.id,
+            products: cart,
+
           }),
           headers: {
               'Accept': 'application/json',
@@ -102,26 +101,6 @@ const CheckoutForm = () => {
   } catch (error) {
 
   }
-    // apiのリクエスト
-    // 配送先id、合計金額、paymentMethod.id
-    console.log(paymentMethod)
-      // try {
-      //     const res = await fetch('http://localhost:8080/api/order', {
-      //         method: 'POST',
-      //         body : JSON.stringify({
-      //           postage :postage, billing_amount: billingAmount, method_of_payment:methodOfPayment, destinations_name: destinationsName, destinations_postcode: destinationsPostcode, destinations_address: destinationsAddress, order_status: orderStatus
-      //         }),
-      //         headers: {
-      //             'Accept': 'application/json',
-      //             "Content-Type": "application/json",
-      //         },})
-      //         const data = await res.json()
-      //         if (res.status === 422) {
-      //             alert(data.message)
-      //         }
-      // } catch (error) {
-
-      // }
   };
 
   const cardElementOptions = {
@@ -139,13 +118,6 @@ const CheckoutForm = () => {
      
     },
   };
-
-  const [selectedAddress, setAddress] = useState<number | null>(null)
-  const Action = ({id}: {id: number}) => (
-    <button className="w-100 btn btn-lg btn-primary" onClick={() => setAddress(id)}>
-            配送先として選択
-        </button>
-  )
 
   return (
     <form onSubmit={handleSubmit} className='w-1/2 mt-12 mx-auto'>
