@@ -28,6 +28,7 @@ export default function Logout() {
                      "X-XSRF-TOKEN": cookies["XSRF-TOKEN"]
                 },})
                 .then(() => {
+                    removeCookie("XSRF-TOKEN")
                     console.log("Sign-out successful.");
                 })
             
