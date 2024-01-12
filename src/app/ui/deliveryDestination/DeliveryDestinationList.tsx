@@ -36,7 +36,7 @@ export const DeliveryDestinationList = ({Action}: PropsType) => {
             <div>
             {
                 deliveList.map((ResponseData,i) =>
-                    <div key={i}>
+                    <div key={i}  className='mb-4'>
                             <p>{ResponseData.destinations_name}</p>
                             <p>{ResponseData.destinations_postcode}</p>
                             <p>{ResponseData.destinations_address}</p>

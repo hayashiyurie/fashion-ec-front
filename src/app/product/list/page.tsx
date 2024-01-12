@@ -50,30 +50,25 @@ export default function Product() {
         },[])
 
         return (
-            <div>
-                <ul>
+            <div className="container mx-auto">
+                    <button className="btn-lg my-20" onClick={() => router.push("/top")}>ファッションECサイト</button> 
+                <div  className="grid gap-y-4 grid-cols-3">
                     {
-                         
                         products?.map((ResponseProduct, i) => {
                             return (
                                 <div key={i} onClick={() => router.push(`/product/${ResponseProduct.id}`)}>
-                                {ResponseProduct.product_images.map((productImage, index) => (
-
-                                    <div key={index}>
-                                        <NextImage alt={"jj"} height={500} width={500} src={productImage.image.path_url}></NextImage>
-                                        {SouldOut(ResponseProduct.product_inventory_management?.number_of_stock)}
-                                    </div>
-                                ))}
-
+                                    {ResponseProduct.product_images.map((productImage, index) => (
+                                        <div key={index}>
+                                            <NextImage alt={"jj"} height={500} width={400} src={productImage.image.path_url}></NextImage>
+                                            {SouldOut(ResponseProduct.product_inventory_management?.number_of_stock)}
+                                        </div>
+                                    ))}
                                 </div>
                             )
-
                         })            
                     }
-                </ul>
-                <button className="w-100 btn btn-lg btn-primary" onClick={() => router.push("/login")}>ログイン</button>
+                </div>
+                {/* <button className="w-100 btn btn-lg btn-primary" onClick={() => router.push("/login")}>ログイン</button> */}
             </div>
-            
         )
-        // } 
 }
