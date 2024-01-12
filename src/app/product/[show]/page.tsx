@@ -6,6 +6,7 @@ import { AddCartButton } from "@/app/ui/cart/AddCartButton";
 import { CountCartButton } from "@/app/ui/cart/CountCartButton ";
 import { CartContext } from "@/app/provider/CartProvider";
 import { Product, ProductImage, ProductInventoryManagement, Genre } from "@/types/product";
+import { useRouter } from "next/navigation";
 
 interface ResponseData {
     product: ResponseProduct
@@ -16,6 +17,7 @@ type ResponseProduct = Product & {product_images: ProductImage[], product_invent
 export default function ProductDetail({ params }: { params: { show: string } }) {
     const [product, setProduct] = useState<ResponseProduct | null > (null);
     const {cart, dispatch} = useContext(CartContext)
+    const router = useRouter();
     console.log(cart)
 
     useEffect(() => {
@@ -33,7 +35,8 @@ export default function ProductDetail({ params }: { params: { show: string } }) 
     },[])
 
     return (
-        <div>
+        <div className="container mx-auto">
+                <button className="btn-lg my-20" onClick={() => router.push("/top")}>ファッションECサイト</button> 
             <ul>
                 {
                     product?.product_images.map((productImage, index) =>
@@ -45,7 +48,7 @@ export default function ProductDetail({ params }: { params: { show: string } }) 
                 }
             </ul>
                 <h1>{product?.product_name}</h1>
-                <p>{product?.tax_included_price}</p>
+                <p>{product?.tax_included_price}円</p>
                 <p>{product?.genre.genre_name}</p>
                 {product && <AddCartButton product={{id: product.id, price: product.tax_included_price}}/>}
         </div>

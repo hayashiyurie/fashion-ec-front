@@ -6,6 +6,9 @@ import { PaymentProvider } from '../provider/PaymentProvider';
 import { DeliveryDestinationList } from '../ui/deliveryDestination/DeliveryDestinationList';
 import { useCookies } from "react-cookie";
 import { CartContext } from "../provider/CartProvider"
+import { useRouter } from "next/navigation";
+import { RiHome2Line } from "react-icons/ri";
+
 interface Order {
   id: number;
   postage: number;
@@ -120,22 +123,28 @@ const CheckoutForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='w-1/2 mt-12 mx-auto'>
+    <form onSubmit={handleSubmit} className='w-1/2 mt-12 self-auto mx-auto'>
         <DeliveryDestinationList
          Action={Action}
         />
        <CardElement options={cardElementOptions}/>
 
-      <button type="submit">購入</button>
+      <button className='rounded-lg w-64 h-16 mt-4 hover:bg-neutral-500 bg-neutral-400' type="submit">購入</button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </form>
   );
 };
 
 export const PaymentForm = () => {
+  const router = useRouter();
   return (
-    <PaymentProvider>
-        <CheckoutForm />
-    </PaymentProvider>
+    <div>
+      <div className='grid place-items-end'>
+        <button className="btn-lg mt-20" onClick={() => router.push("/top")}><RiHome2Line /></button> 
+      </div>
+      <PaymentProvider>
+          <CheckoutForm />
+      </PaymentProvider>
+    </div>
   );
 };

@@ -3,6 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
+import { HiOutlineHome } from "react-icons/hi2";
+import { IconContext } from 'react-icons'
 
 interface Customer {
     id: number;
@@ -60,23 +62,21 @@ const save = async ()  => {
 }
 
 return (
-    <div>
-        <main className="form-signin">
-            {/* <form> */}
-                <h1 className="h3 mb-3 fw-normal">Please login</h1>
-                <button className="w-100 btn btn-lg btn-primary" onClick={() => router.push("/top")}>TOPページ</button> 
-                <div className="form-floating">
-                    <input className="form-control" placeholder="Email" value={email} onChange={(e) => seteEail(e.target.value)}/>
+    <div className="container mx-auto">
+                    <button className="btn-lg mt-20" onClick={() => router.push("/top")}>ファッションECサイト</button> 
+        <main className="w-80 m-14">
+                <div className="text-2xl ">Login</div>
+                <div className="pt-4">
+                    <input className="form-control " placeholder="Email" value={email} onChange={(e) => seteEail(e.target.value)}/>
                     <label>メールアドレス</label>
                 </div>
 
-                <div className="form-floating">
+                <div className="pt-2 pb-4">
                     <input className="form-control" placeholder="Password" value={password} onChange={(e) => setPeassword(e.target.value)}/>
                     <label>パスワード</label>
                 </div>
 
-                <button className="w-100 btn btn-lg btn-primary" onClick={save}>ログイン</button> 
-            {/* </form> */}
+                <button className="col-start-2 rounded-lg w-64 h-16 hover:bg-neutral-500 bg-neutral-400" onClick={save}>ログイン</button> 
           </main>
     </div>
 )
