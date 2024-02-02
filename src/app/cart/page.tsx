@@ -11,9 +11,6 @@ export default function CartPage() {
     // const cart = [{product_id:1,sum_price:700, quantity:1}]
     return (
         <div className="container mx-auto max-w-3xl">
-            <div className="flex flex-row h-32">
-                <button className="btn-lg m-8" onClick={() => router.push("/top")}>ファッションECサイト</button> 
-            </div>
             <div className="grid grid-flow-col grid-cols-2 grid-rows-2 gap-4">
                     <img src="./images/coatBlack.png" alt="coat" />
                     <img className="row-start-2" src="./images/coatBrown.png" alt="coat" />
