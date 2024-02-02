@@ -44,7 +44,7 @@ export default function Product() {
                   },})
             .then(res => res.json())
             .then((data: ResponseData) => {
-                // console.log(data);
+                console.log(data);
                 setProduct(data.products)
             })
         },[])

@@ -63,7 +63,7 @@ const CheckoutForm = () => {
 
   const {cart, dispatch} = useContext(CartContext)
 
-  const buyPrice = useMemo(() => cart.reduce((sum, productInCart) => (productInCart.sum_price), 0), [cart])
+  const buyPrice = useMemo(() => cart.reduce((sum, productInCart) => (sum + productInCart.sum_price), 0), [cart])
 
     
   const handlePayment = async (paymentMethod: PaymentMethod) => {
@@ -139,9 +139,6 @@ export const PaymentForm = () => {
   const router = useRouter();
   return (
     <div>
-      <div className='grid place-items-end'>
-        <button className="btn-lg mt-20" onClick={() => router.push("/top")}><RiHome2Line /></button> 
-      </div>
       <PaymentProvider>
           <CheckoutForm />
       </PaymentProvider>
