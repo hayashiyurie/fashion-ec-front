@@ -2,7 +2,6 @@
 import { useRouter } from 'next/navigation';
 import { Order, OrderProduct, Product, ProductImage } from "@/types/order";
 import { useEffect, useState } from "react";
-// import { Product, ProductImage } from '@/types/product';
 import NextImage from 'next/image';
 import { DeliveryDestination } from '@/types/deliveryDestination';
 import { Customer } from '@/types/customer';
@@ -36,7 +35,7 @@ export default function Detail({ params }: { params: { detail: string } }) {
         },[])
 
         return(
-            <div className='w-1/2 mx-auto mt-5'>
+            <div className='w-1/2 mx-auto'>
                 <h1>ご注文履歴詳細</h1>
                     
                     <div className='mt-5 divide-y'>
@@ -62,8 +61,9 @@ export default function Detail({ params }: { params: { detail: string } }) {
                             )
                         })
                     }
-                    <button className="mt-3 px-1 rounded w-auto h-12 hover:bg-neutral-500 bg-white border border-black" onClick={() => router.push("/orderHistory")}>注文履歴へ戻る</button>
-
+                    <div className='grid'>
+                        <button className="text-sm mt-3 p-2 rounded-lg hover:bg-neutral-300 bg-white place-self-end" onClick={() => router.push("/orderHistory")}>注文履歴へ戻る</button>
+                    </div>
                     </div>
             </div>
             

@@ -14,8 +14,8 @@ const SouldOut = (stockNumber: number) => {
     console.log(stockNumber)
     return (
         <div>
-            {stockNumber === 0 && '売り切れ'}
-            {stockNumber > 0 && '販売'}
+            {stockNumber === 0 && 'SouldOut'}
+            {/* {stockNumber > 0 && '販売'} SouldOutだけでいいと思う*/}
         </div>
     );
 }
@@ -51,8 +51,7 @@ export default function Product() {
 
         return (
             <div className="container mx-auto">
-                    <button className="btn-lg my-20" onClick={() => router.push("/top")}>ファッションECサイト</button> 
-                <div  className="grid gap-y-4 grid-cols-3">
+                <div  className="grid grid-cols-3 gap-4">
                     {
                         products?.map((ResponseProduct, i) => {
                             return (
@@ -61,6 +60,8 @@ export default function Product() {
                                         <div key={index}>
                                             <NextImage alt={"jj"} height={500} width={400} src={productImage.image.path_url}></NextImage>
                                             {SouldOut(ResponseProduct.product_inventory_management?.number_of_stock)}
+                                            <p className='text-sm'>{ResponseProduct.product_name}</p>
+                                            <p className='font-medium'>¥{ResponseProduct.tax_included_price}(税込)</p>
                                         </div>
                                     ))}
                                 </div>

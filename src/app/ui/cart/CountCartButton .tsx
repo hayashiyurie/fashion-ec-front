@@ -17,8 +17,8 @@ export const CountCartButton = ({product}: PropsType) => {
     return(
         <>
             <span>{`数量:${cart.find(productInCart => productInCart.product_id === product.id)?.quantity}`}</span>
-            <button className="w-10 h-10 m-2 btn btn-lg btn-primary hover:bg-neutral-500 bg-neutral-400" onClick={addToCartUp}>+</button>
-            <button className="w-10 h-10 m-2 btn btn-lg btn-primary hover:bg-neutral-500 bg-neutral-400" onClick={addToCartDown}>-</button>
+            <button className="p-2 m-2 rounded-full hover:bg-neutral-500 bg-neutral-400" onClick={addToCartUp}>+</button>
+            <button className="p-2 m-2 rounded-full hover:bg-neutral-500 bg-neutral-400" onClick={addToCartDown}>-</button>
         </>
 
     )

@@ -62,20 +62,17 @@ const save = async ()  => {
 }
 
 return (
-    <div className="container mx-auto">
-                    <button className="btn-lg mt-20" onClick={() => router.push("/top")}>ファッションECサイト</button> 
-        <main className="w-80 m-14">
-                <div className="text-2xl ">Login</div>
+    <div className="grid justify-items-center">
+        <main className="m-11">
+                <div className="text-2xl">Login</div>
                 <div className="pt-4">
-                    <input className="form-control " placeholder="Email" value={email} onChange={(e) => seteEail(e.target.value)}/>
+                    <input className="form-control mr-2" placeholder="Email" value={email} onChange={(e) => seteEail(e.target.value)}/>
                     <label>メールアドレス</label>
                 </div>
-
                 <div className="pt-2 pb-4">
-                    <input className="form-control" placeholder="Password" value={password} onChange={(e) => setPeassword(e.target.value)}/>
+                    <input className="form-control mr-2" placeholder="Password" value={password} onChange={(e) => setPeassword(e.target.value)}/>
                     <label>パスワード</label>
                 </div>
-
                 <button className="col-start-2 rounded-lg w-64 h-16 hover:bg-neutral-500 bg-neutral-400" onClick={save}>ログイン</button> 
           </main>
     </div>

@@ -35,22 +35,25 @@ export default function ProductDetail({ params }: { params: { show: string } }) 
     },[])
 
     return (
-        <div className="container mx-auto">
-                <button className="btn-lg my-20" onClick={() => router.push("/top")}>ファッションECサイト</button> 
+        <div  className="grid grid-cols-3">
             <ul>
                 {
                     product?.product_images.map((productImage, index) =>
                     
                         <div key={index}>
-                            <NextImage alt={"jj"} height={500} width={500} src={productImage.image.path_url}></NextImage>
+                            <NextImage alt={"jj"} height={400} width={400} src={productImage.image.path_url}></NextImage>
                         </div>
                     )
                 }
             </ul>
-                <h1>{product?.product_name}</h1>
-                <p>{product?.tax_included_price}円</p>
-                <p>{product?.genre.genre_name}</p>
+            <div className="justify-self-center">
+                <h1 className="text-sm">{product?.product_name}</h1>
+                {/* <p>ジャンル：{product?.genre.genre_name}</p> */}
+                <p className='text-sm'>¥{product?.tax_included_price}(税込)</p>
+            </div>
+            <div className="justify-self-end">
                 {product && <AddCartButton product={{id: product.id, price: product.tax_included_price}}/>}
+            </div>
         </div>
     );
   }

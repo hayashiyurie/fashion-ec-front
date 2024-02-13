@@ -12,8 +12,9 @@ export const AddCartButton = ({product}: PropsType) => {
     }
 
     return(
-        <button className="w-100 btn btn-lg btn-primary" onClick={addToCart}>カートに追加する</button>
-
+        <div className="">
+            <button className="p-2 rounded-lg hover:bg-neutral-300 bg-white" onClick={addToCart}>カートに追加</button>
+        </div>
     )
 
 }
