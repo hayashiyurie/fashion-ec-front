@@ -83,50 +83,31 @@ export default function Register() {
         
 
     return (
-        <div>
+        <div className='flex justify-center'>
             <main className="form-signin">
 				{/* <form> */}
 					<h1 className="h3 mb-3 fw-normal">Please register</h1>
- 
 					<div className="form-floating">
-						<input className="form-control" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)}
-						 
-						/>
+						<input className="form-control m-2" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
 						<label>First Name</label>
 					</div>
- 
 					<div className="form-floating">
-						<input className="form-control" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)}
-						 
-						/>
+						<input className="form-control m-2" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
 						<label>Last Name</label>
 					</div>
- 
 					<div className="form-floating">
-						<input type="email" className="form-control" placeholder="name@example.com" value={email} onChange={(e) => seteEail(e.target.value)}
-						
-						/>
+						<input type="email" className="form-control m-2" placeholder="name@example.com" value={email} onChange={(e) => seteEail(e.target.value)}/>
 						<label>Email address</label>
 					</div>
- 
 					<div className="form-floating">
-						<input type="password" className="form-control" placeholder="Password" value={password} onChange={(e) => setPeassword(e.target.value)}
-						/>
+						<input type="password" className="form-control m-2" placeholder="Password" value={password} onChange={(e) => setPeassword(e.target.value)}/>
 						<label>Password</label>
 					</div>
- 
 					<div className="form-floating">
-						<input type="password" className="form-control" placeholder="Password Confirm" value={passwordConfirm} onChange={(e) => setPasswordConfirm(e.target.value)}
-						/>
+						<input type="password" className="form-control m-2" placeholder="Password Confirm" value={passwordConfirm} onChange={(e) => setPasswordConfirm(e.target.value)}/>
 						<label>Password Confirm</label>
 					</div>
- 
-					<button className="w-100 btn btn-lg btn-primary" onClick={save}>登録</button> 
-                    {/* type="submit" Submit */}
-                    {/* <div>
-                        <button onClick={greeting}>Click me!</button>
-                    </div> */}
-				{/* </form> */}
+					<button className="rounded-lg w-60 h-16 m-3 hover:bg-neutral-500 bg-neutral-400" onClick={save}>登録</button> 
 		  	</main>
         </div>
     )

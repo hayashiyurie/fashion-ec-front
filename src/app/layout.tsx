@@ -22,12 +22,18 @@ export default function RootLayout({
     <html lang="en">
     
       <body className={inter.className}>
-        <Header/>
-        <CustomCookiesProvider>
-        <CartProvider>
-        {children}
-        </CartProvider>
-        </CustomCookiesProvider>
+        <div className='bg-red-bean-100'>
+          <div className='container mx-auto max-w-6xl'>
+            <Header/>
+            <div className='p-11'>
+              <CustomCookiesProvider>
+              <CartProvider>
+              {children}
+              </CartProvider>
+              </CustomCookiesProvider>
+          </div>
+          </div>
+        </div>
         </body>
     </html>
   )

@@ -37,16 +37,14 @@ export default function Top() {
             })
         },[])
         return (
-            <div className="container mx-auto max-w-6xl align-items: center;justify-content: center;">
-               
+            <div className=""> 
                 <div className="grid grid-cols-4 gap-4">
                     <div className="row-span-1 col-span-3" >
                         <img src="./images/top.png" alt="topImage" />
                     </div>
-                    <div className="place-self-center">
+                    <div className="place-self-center bg-red-bean-400/50 p-4 h-full">
                         <GenreList />
                     </div>
-                    {/* <div  className="grid gap-y-4 grid-cols-3"> */}
                     {
                         products?.map((ResponseProduct, i) => {
                             return (
@@ -54,13 +52,14 @@ export default function Top() {
                                     {ResponseProduct.product_images.map((productImage, index) => (
                                         <div key={index}>
                                             <NextImage alt={"jj"} height={500} width={400} src={productImage.image.path_url}></NextImage>
+                                            <p className="text-ms">{ResponseProduct.product_name}</p>
+                                            <p>¥{ResponseProduct.tax_included_price}(税込)</p>
                                         </div>
                                     ))}
                                 </div>
                             )
                         })            
                     }
-                    {/* </div> */}
                 </div>
             </div>
         )

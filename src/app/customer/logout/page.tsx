@@ -38,9 +38,6 @@ export default function Logout() {
     }
     return (
         <div className="container mx-auto max-w-3xl">
-            <IconContext.Provider value={{size: '26px' }}>
-                <button className="btn-lg mt-20" onClick={() => router.push("/top")}><RiHome2Line /></button> 
-            </IconContext.Provider>
             <div className="grid">
                 <main className="m-10 place-self-center">
                     <button className="w-100 rounded-lg w-64 h-16 hover:bg-neutral-500 bg-neutral-400" onClick={onSubmit}>ログアウト</button> 

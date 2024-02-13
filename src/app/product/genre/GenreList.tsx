@@ -30,10 +30,10 @@ export const GenreList = () => {
        
     const listGenres = () => {
         return (
-        <div className="flex flex-col">
+        <div className="flex flex-col text-red-bean-200">
             {
                 genres.map((genre) => 
-                    <button key={genre.id} className="rounded-lg w-40 h-14 hover:bg-[#9C7C7C] bg-[#AB9F9F] mb-3" type="button" onClick={() => router.push(`/product/list/?genre_id=${genre.id}`)}>
+                    <button key={genre.id} className="rounded-lg w-40 h-14 hover:bg-red-bean-500 bg-red-bean-400 mb-3 text-sm" type="button" onClick={() => router.push(`/product/list/?genre_id=${genre.id}`)}>
                         {genre.genre_name}
                     </button>
                 )
